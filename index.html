@@ -3,12 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>You're Late Again! - university Life Simulator </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    
+    
 </head>
 <body>
     
+<header class="website-header"> 
+    <h1>You're Late Again!</h1>
+    <p>A Day in the Life of a University Student</p>
+</header>
+
+<section id="dashboard>
+    
+    <h2> Student Dashboard</h2>
+
+    <div class="time-container">
+    <p> 
+    Current Time:
+        <span id="current-time">8:30 AM</span> 
+    </p>
+
+</div>
+
+<div class="progress-container">
+    <label for="day-progress">Day Progress</label>
+    <progress id-"day-progress 
+        value="0" max="100">
+    </progress>
+
+    <span id="progress-text">0%</span>
+</div>
+
+    <div class="stats-container">
+
+        <div class="stat">
+            <h3>Energy</h3>
+            <span id="energy">70</span>
+               <progress id="energy-bar"
+                value="70" max="100">
+               </progress>
+
+             </div>
+
+            <div class="stat">
+                <h3>Productivity</h3>
+                <span id="productivity">50</span>
+                <progress id="productivity-bar"
+                          value="50" max="100">
+                </progress>
+            </div>
+
+            <div class="stat">
+                <h3> Happiness</h3>
+                <span id="happiness">60</span>
+                <progress id="happiness-bar"
+                          value="60" max="100">
+                </progress>
+            </div>
+
+        </div>
+    </section>
+             
+
+<main id="game-container">
+
+    <section id="morning" class="scene active">
+
+        <h2> Scene 1: Morning Madness</h2>
+
+        <img src="assets/morning.jpg"
+            alt="University student waking up late"
+            class="scene-image">
+
+        <p class="story-text">
+            BEEP! BEEP! BEEP!
+        </p>
+
+        <p class="story-text">
+            You open your eyes and grab your phone. 
+            It's already 8:30AM!
+        </p>
+
+
+
+        <p class="story-text">
+                WAIT... WHAT?!
+                Your important university presentation
+                starts at 9:00 AM!
+            </p>
+
+            <p class="story-text">
+                Your room is messy, your backpack isn't
+                packed, and you're still wearing pajamas.
+            </p>
+
+        <div class="decision" data-decision="1">
+            <h3> 1. What's your first move?</h3>
+            
+    <div class="choices">
+        <button class="choice-btn"
+            data-choice="rush">
+            Jump out of bed immediately
+        </button>
+
+        <button class="choice-btn"
+            data-choice="prepare">
+            Calmly pack your bag
+        </button>
+    </div>
+
+        </div>
+
+<!---Decision 2-->
+
+        <div class="decision" data-decision="2">
+
+         <h3>2. What about breakfast/</h3> 
+            <div class="choices">
+                <button class="choice-btn"
+                    data-choice="breakfast">
+                    Grab a Sandwich
+                </button>
+
+                <button class="choice-btn"
+                    data-choice="coffee">
+                    Coffee is enough
+                </button>
+
+                <button class="choice-btn"
+                    data-choice="skip-breakfast">
+                    Skip breakfast completely
+                </button>
+
+            </div>   
+        </div>
+
+
+<button class="next-btn" data-next="transport">
+    Next: Getting to University
+</button>
+    </section>
+
+
+
+    <section id="transport" class="scene" hidden>
+        <h2>Scene 2: The Race to Campus</h2>
+<img src="assets/transport.jpg"
+    alt="Student travelling to university"
+    class="scene-image">
+
+        <p class="story-text">
+                You finally leave your house! The clock is ticking. 
+        </p>
+
+        <p class="story-text">
+            Your phone keeps buzzing with messages from your presentation group.
+        </p>
+
+        <p class="story-text">
+            "Where are you?! We start soon!"
+        </p>
+
+
+        <div class="decision" data-decision="3">
+
+            <h3>3. How will you get to university?</h3>
+
+<div class="choices">
+    <button clas="choice-btn"
+        data-choice="bus">
+        Take the bus
+    </button>
+
+    <button class="choice-btn"
+        data-choice="walk">
+        Walk to campus
+    </button>
+
+    <button calss="choice-btn"
+        data-choice="rideshare">
+        Book a rideshare
+    </button>
+
+</div>
+        </div>
+
+
+<div class="decision" data-decision="4">
+    <h3>4. You reach campus. What's next?</h3>
+
+<div class="choices">
+    <button class="choice-btn"
+        data-choice="run-class">
+        Run straight to class
+    </button>
+
+    <button class="choice-btn"
+        data-choice="coffee-stop">
+        Stop for another coffee
+    </button>
+</div>
+</div>
+
+
+        <p id="arrival-message" class="conditional-text">
+            Will you make it to your presentation? You earlier decision will determine what happens next.
+        </p>
+
+        <button class="next-btn" data-next="afternoon">
+            NextL Afternoon Activities
+        </button>
+
+    </section>
+
+<section id="afternoon" class="scene" hidden>
+    <h2>Scene 3: Afternoon Decisions</h2>
+
+<img src=assets/afternoon.jpg 
+    alt="University students studying on campus
+    class="sceme-image">
+
+
+    <p class="story-text">
+        Somehow, you've survived the morning.
+    </p>
+
+    <p class="story-text">
+        Your stomach is growling, your phone is dying, and your brain needs a break.
+    </p>
+
+    <p class="story-text">
+        But uni life does not stop.
+    </p>
+
+    <div class="decision" data-decision="5">
+
+        <h3>5. Will you attend your next lecture?</h3>
+
+    <div class="choices">
+        <button class="choice-btn"
+            data-choice="attend-class">
+
+            Attend the lecture
+        </button>
+
+        <button class="choice-btn"
+            data-choice="skip-class">
+        Skip class
+        </button>
+    </div>
+    </div>
+
+
+    <div class="decision" data-decision="6">
+        <h3>6. You have a free hour. What's the plan?</h3>
+
+        <div class="choices">
+            <button class="choice-btn"
+                data-choice="library">
+                Study at the library
+            </button>
+
+
+        <button class="choice-btn"
+            data-choice="nap">
+            Take a quick nap
+        </button>
+        </div>
+    </div>
+
+    <button class="next-btn" data-next="evening">
+Mext: Evening
+
+    </button>
+</section>
+
+
+
+    <section id="evening" class="scene" hidden>
+        <h2>Scene 4L Friends vs responsibilities</h2>
+
+        <img src="assets/evening.png"
+            alt="University friends hanging out"
+            class="scene-image">
+
+        <p class="story-text">
+            It's finally evening.
+        </p>
+
+        <p class="story-text">
+            Your friends text you:
+
+            "We're going out, come with us!"
+        </p>
+
+        <p class="story-text">
+            There is just oneproblem... my assignment is due at midnight.
+        </p>
+
+        <div class="decision" data-decision="7">
+
+            <h3>7. What will you do?</h3>
+            
+<div class="choices">
+    <button class="choice-btn"
+        data-choice="friends">
+        Hang out with friends
+    </button>
+
+    <button class="choice'btn"
+        data-choice="study-evening">
+        Work on your assignment
+    </button>
+
+    <button class="choice-btn"
+        data-choice="home">
+        Go home and rest
+    </button>
+</div>
+        </div>
+
+        <p id="assignment-warning" class="conditinoal-text">
+            Your assignment deadline is approaching. Will you have enough time?
+        </p>
+
+        <button class="next-btn" data-next="night">
+            Next: Night
+        </button>
+    </section>
+
+
+
+<section id="night" class="scene" hidden>
+
+    <h2>Scene 5: Midnight Deadlines</h2>
+    <img src="assets/night.jpg"
+        alt="University student studying at night"
+        class="scene-image">
+
+    <p class="story-text">
+        It's late, You're exhausted.
+    </p>
+
+    <p class="story-text">
+        Your bed looks comfortable, but your unfinished work is calling.
+    </p>
+
+    <div class="decision" data-decision="8">
+        <h3>8. What's your final decision?</h3>
+
+
+<div class="choices'>
+    <button class="choice-btn"
+    <data-choice="finish-work">
+
+    Finish your assignment
+</button>
+    <button class="choice-btn"
+        data-choice="partial-work">
+        Complete what you can
+    </button>
+    <button class="choice-btn"
+        data-choice="ignore-work">
+        Ignore the deadline and sleep
+    </button>
+</div>
+        
+
+    </div>
+
+
+    <button class="next-btn" data-next="summary">
+        See Your Daily Results
+    </button>
+</section>
+
+<section id="summary" class="scene" hidden>
+    <h2>Scene 6: Your Daily Summary</h2>
+<p class="story-text">
+    Congrats! You survived another day at university.
+</p>
+
+    <h3>Your final Stats</h3>
+    
+
+    <div class="final-stats">
+        <p>
+            Energy:
+            <span id="final-energy">0</span>
+        </p>
+
+
+        <p>
+
+            Productivity
+            <span id="final-productivity"></span>
+        </p>
+
+<p>
+    Happiness:
+    <span id="final-happiness"></span>
+</p>
+
+    </div>
+
+
+    <div id="ending-result" aria-live="polite">
+
+        <h3 id=ending-title">
+            Your ending will appear here!
+        </h3>
+
+        <p id="ending-description">
+            Your choices determine how your university day ends.
+        </p>
+
+    </div>
+
+
+    <h3>Possible Endings</h3>
+
+    <div class="ending-container">
+        <article class+"ending-card">
+            <h4>Productive Day</h4>
+
+            <p>
+                You stay focues, attended classes, and completed your work
+            </p>
+        
+
+
+        </article>
+
+        <article class="ending-card">
+            <h4>Balanced Day</h4>
+<p>You balanced studying, friendships, and taking care of yourself.</p>
+
+        </article>
+
+<article class="ending-card">
+    <h4>Chaotic Day</h4>
+<p>Your day was full of unexpected adventures and questionable choices</p>
+
+</article>
+
+        <article class="ending-card">
+            <h4> Stressful day</h4>
+<p>Deadlines, exhaustion, and pressure made your day overwhelming</p>
+
+        </article>
+
+    </div>
+
+
+<button id="replay-btn" type="button">
+    Play again
+</button>
+
+</section>
+</main>
+
+
+    <footer class="website-footer">
+        <p>You're Late. Again!</p>
+<p> Every choice changes your story.</p>
+<p>Created by Adrian Wong, Timothy Aogon, Nayonike Jain</p>
+
+    </footer>
+    
+
+
 
 
     
+
+        
+        
 </body>
 </html>
