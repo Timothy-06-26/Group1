@@ -1,0 +1,288 @@
+/* Basic page setup */
+
+/* Nayonika: Used the W3C CSS documentation as a reference for border-box, selectors, transitions, hover effects.
+https://www.w3.org/Style/CSS/specs.en.html */
+
+
+/* Keeps padding and borders inside the fixed width so that the same layout works on smaller screens */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #efede9;
+    color: #303030;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+.website-header {
+    padding: 28px 20px;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    border-bottom: 4px solid #9b7960;
+}
+
+.website-header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.website-header p {
+    margin: 8px 0 0;
+    color: #e0dcd6;
+}
+
+.website-footer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #000000;
+    color: #e0dcd6;
+    text-align: center;
+    font-size: 14px;
+}
+
+.website-footer p {
+    margin: 4px 0;
+}
+
+/* Dashboard and student stats */
+#dashboard, #game-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 24px auto;
+}
+
+#dashboard {
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc7bf;
+    border-radius: 6px;
+}
+
+#dashboard h2 {
+    margin-top: 0;
+}
+
+.time-container p {
+    margin: 0 0 12px;
+}
+
+#current-time, #progress-text {
+    font-weight: bold;
+}
+
+.progress-container {
+    margin-bottom: 18px;
+}
+
+.progress-container label {
+    display: block;
+}
+
+.stats-container {
+    display: flex;
+    gap: 15px;
+}
+
+.stat {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    background-color: #f5f3ef;
+    border: 1px solid #d6d1ca;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.stat h3 {
+    margin: 0 0 5px;
+    font-size: 16px;
+}
+
+progress {
+    display: block;
+    width: 100%;
+    height: 14px;
+    margin-top: 8px;
+    accent-color: #80674f;
+}
+
+/* Main interactive story area */
+.scene {
+    padding: 25px;
+    background-color: white;
+    border: 1px solid #ccc7bf;
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+.scene[hidden] {
+    display: none;
+}
+
+.scene h2 {
+    margin: 0 0 20px;
+    font-size: 26px;
+}
+
+.scene-image, .scene > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #d6d1ca;
+}
+
+.story-text {
+    margin: 12px 0;
+}
+
+.decision {
+    margin: 22px 0;
+    padding: 18px;
+    background-color: #f5f3ef;
+    border: 1px solid #d6d1ca;
+    border-radius: 4px;
+}
+
+.decision h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+}
+
+/* Choice and navigation buttons */
+.choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+button {
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.choice-btn, .choices button, button[data-choice] {
+    flex: 1 1 180px;
+    min-height: 46px;
+    padding: 10px 14px;
+    background-color: white;
+    color: #303030;
+    border: 1px solid #a9a29a;
+    border-radius: 4px;
+}
+
+
+/* Lift choice buttons slightly on hover */
+.choice-btn:hover {
+    background-color: #e4ded5;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Show which choice was selected */
+.choice-btn.selected {
+    background-color: #80674f;
+    color: white;
+}
+
+/* Outline when using the keyboard to move between buttons */
+button:focus-visible {
+    outline: 3px solid #80674f;
+    outline-offset: 3px;
+}
+
+/* Next and replay buttons */
+.next-btn, #replay-btn {
+    display: block;
+    margin: 22px 0 0 auto;
+    padding: 12px 20px;
+    background-color: #303437;
+    color: white;
+    border: 1px solid #303437;
+    border-radius: 4px;
+}
+
+.next-btn:hover, #replay-btn:hover {
+    background-color: #50565a;
+}
+
+/* Messages about earlier decisions */
+.conditional-text {
+    padding: 12px;
+    background-color: #f3e9dc;
+    border-left: 4px solid #9b7960;
+}
+
+/* Daily results */
+.final-stats, .ending-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.final-stats p, .ending-card {
+    flex: 1 1 200px;
+    margin: 0;
+    padding: 15px;
+    background-color: #f5f3ef;
+    border: 1px solid #d6d1ca;
+    border-radius: 4px;
+}
+
+.ending-card h4 {
+    margin-top: 0;
+}
+
+#ending-result {
+    margin: 22px 0;
+    padding: 18px;
+    background-color: #e4ded5;
+    border: 1px solid #b9aea0;
+}
+
+#ending-result h3 {
+    margin-top: 0;
+}
+
+
+/* Mobile layout */
+@media (max-width: 520px) {
+    .website-header h1 {
+        font-size: 28px;
+    }
+
+    #dashboard, .scene {
+        padding: 15px;
+    }
+
+    .scene h2 {
+        font-size: 22px;
+    }
+
+    .stats-container, .choices, .final-stats,
+    .ending-container {
+        flex-direction: column;
+    }
+
+    .choice-btn, .choices button, button[data-choice],
+    .final-stats p, .ending-container article {
+        flex-basis: auto;
+    }
+
+    .decision {
+        padding: 14px;
+    }
+
+    .next-btn, #replay-btn {
+        width: 100%;
+    }
+}
+
