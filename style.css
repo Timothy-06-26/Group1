@@ -214,6 +214,19 @@ button:focus-visible {
     background-color: #50565a;
 }
 
+/* Next button is locked until every decision in the scene is made (script.js) */
+.next-btn:disabled {
+    background-color: #b9b4ad;
+    border-color: #b9b4ad;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* The ending the player earned, highlighted in the "Possible Endings" list */
+.ending-card.earned {
+    background-color: #f3e9dc;
+    border: 2px solid #80674f;
+}
 /* Messages about earlier decisions */
 .conditional-text {
     padding: 12px;
