@@ -31,6 +31,33 @@ var effects = {
 
 };
 
+// Clock jumps to these times when a new scene starts
+
+var sceneStartTimes ={
+    "afternoon": 13 * 60, // 1:00PM
+    "evening": 18 * 60, // 6:00PM
+    "night": 22 * 60 + 30, //10:30PM
+    "summary": 24 * 60 // 12:00AM
+};
+
+var Presentation_Time = 9*60;
+// name save is under in localStorage
+var SAVE_KEY = "lateAgainSave";
+
+//player progress in one object
+var game =  newGame();
+
+function newGame() {
+    return {
+        scene: "morning",
+        minutes: 8 * 60 + 30, //8:30AM
+        energy: 70,
+        productivity: 50,
+        happiness: 60,
+        choices: {}
+    };
+}
+
 
 /* SAVING AND LOADING (Local Storage) */
 
@@ -53,7 +80,7 @@ function loadGame() {
         var savedGame = JSON.parse(savedText);
 
         /* Only used if the save points to a real scene */
-        if (document.getElementById(savedGame.currentScene) === null) {
+        if (document.getElementById(savedGame.scene) === null) {
             return false;
         }
         game = savedGame;
@@ -77,6 +104,7 @@ function loadGame() {
         } else {
             return number;
         }
+    }
 
         //Turns minutes after midnight into text like "7:30 AM" or "12:00 PM"
         function formatTime(totalminutes) {
@@ -101,18 +129,18 @@ function loadGame() {
             return hours + ":" + mins + " " + suffix;
         }
 
-    }
+    
 
         //Apply the effects of an action to the game state
         function applyChoice(decisionNumber, choice) {
             var fx = effects[choice];
             var productivityChange = fx.productivity;
-            var happessChange = fx.happiness;
+            var happinessChange = fx.happiness;
 
             //Conditional: finishing the assignment while exhausted works less well.
             if (choice === "finish-work" && game.energy < 25) {
                 productivityChange = 5;
-                happeniessChange = -5;
+                happinessChange = -5;
             }
 
             game.energy = limit(game.energy + fx.energy);
@@ -123,7 +151,7 @@ function loadGame() {
             game.choices[decisionNumber] = choice;
         }
 
-        /* Runs when player clicks a choice button, applies the choice and moves to the next scene */
+        /* Runs when player leaves Scene 2, where they on time for 9:00AM? */
         function checkArrival() {
             if (game.minutes <= PRESENTATION_TIME) {
                 game.productivity = limit(game.productivity + 10);
@@ -138,7 +166,7 @@ function loadGame() {
         function sceneIsFinished(sceneElement) {
             var decisions = sceneElement.querySelectorAll(".decision");
             var picked = sceneElement.querySelectorAll(".choice-btn.selected");
-            return picked.length === picked.length;
+            return decisions.length === picked.length;
         }
 
         //Chooses the ending from the final stats 
@@ -181,9 +209,9 @@ function loadGame() {
 
             scenes.forEach(function (scene) {
                 if (scene.id === game.scene) {
-                    scene.hidden = "false";
+                    scene.hidden = false;
                 } else {
-                    scene.hidden = "true";
+                    scene.hidden = true;
                 }
             });
         }
@@ -261,7 +289,7 @@ function loadGame() {
 
             if (game.choices["5"] === "attend-class" && game.choices["6"] === "library") {
                 text = "You attended the lecture and studied at the library, so most of the assignment is already done.";
-            } else if (game.choices["5"] === "attend-class" && game.choices["6"] === "library") {
+            } else if (game.choices["5"] === "attend-class" || game.choices["6"] === "library") {
                 text = "You made a little progress this afternoon, but there's still plenty left to do. ";
             } else {
                 text = "You didn't make much progress this afternoon, so there's still plenty left to do. Midnight is approaching ";
