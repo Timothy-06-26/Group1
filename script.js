@@ -40,7 +40,7 @@ var sceneStartTimes ={
     "summary": 24 * 60 // 12:00AM
 };
 
-var Presentation_Time = 9*60;
+var PRESENTATION_TIME = 9*60;
 // name save is under in localStorage
 var SAVE_KEY = "lateAgainSave";
 
