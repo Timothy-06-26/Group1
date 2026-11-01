@@ -98,4 +98,63 @@ function loadGame() {
 
             return hours + ":" + mins + " " + suffix;
         }
-        
+
+        //Apply the effects of an action to the game state
+        function applyChoice(decisionNumber, choice) {
+            var fx = effects[choice];
+            var productivityChange = fx.productivity;
+            var happessChange = fx.happiness;
+
+            //Conditional: finishing the assignment while exhausted works less well.
+            if (choice === "finish-work" && game.energy < 25) {
+                productivityChange = 5;
+                happeniessChange = -5;
+            }
+
+            game.energy = limit(game.energy + fx.energy);
+            game.productivity = limit(game.productivity + productivityChange);
+            game.happiness = limit(game.happiness + happinessChange);
+            game.minutes = game.minutes + fx.minutes;
+
+            game.choices[decisionNumber] = choice;
+        }
+
+        /* Runs when player clicks a choice button, applies the choice and moves to the next scene */
+        function checkArrival() {
+            if (game.minutes <= PRESENTATION_TIME) {
+                game.productivity = limit(game.productivity + 10);
+                game.happiness = limit(game.happiness + 5);
+            } else {
+                game.productivity = limit(game.productivity - 10);
+                game.happiness = limit(game.happiness - 10);
+            }
+        }
+
+        /*Questions the player completion of decisions on the scene*/
+        function sceneIsFinished(sceneElement) {
+            var decisions = sceneElement.querySelectorAll(".decision");
+            var picked = sceneElement.querySelectorAll(".choice-btn.selected");
+            return picked.length === picked.length;
+        }
+
+        //Chooses the ending from the final stats 
+        function getEnding() {
+            if (game.productivity >= 75 && game.energy >= 15) {
+                return "Productive Day";
+            } else if (game.productivity < 50 && game.happiness < 50) {
+                return "Balanced Day";
+            } else  if (game.happiness >= 60 && game.productivity < 50) {
+                return "Chaotic Day";
+               }   else {
+                    return "Stressful Day";
+                }
+            }
+
+            var endingTexts = {
+                "Productive Day": "You had a productive day! You managed to get a lot done and still have energy left for tomorrow.",
+                "Balanced Day": "You had a balanced day. You managed to get some work done, but also took time to relax and enjoy yourself.",
+                "Chaotic Day": "You had a chaotic day. You were overwhelmed and didn't manage to get much done.",
+                "Stressful Day": "You had a stressful day. You felt overwhelmed and didn't manage to get much done."
+            };  
+
+            
