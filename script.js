@@ -17,3 +17,19 @@ var effects = {
 
 "attend-class": { minutes: 60, energy: -5, productivity: 10, happiness: -3 },
 "skip-class": { minutes: 0, energy: 5, productivity: -10, happiness: -8},
+
+"library": { minutes: 60, energy: -8, productivity: 12, happiness: 0 },
+"nap": { minutes: 30, energy: 15, productivity: -3, happiness: 5 },
+
+"friends": { minutes: 120, energy: -10, productivity: -15, happiness: 20 },
+"study-evening": { minutes: 120, energy: -10, productivity: 15, happiness: -5 },
+"home": { minutes: 60, energy: 20, productivity: -5, happiness: 5 },    
+
+"finish-work": { minutes: 90, energy: -20, productivity: 15, happiness: 5 },
+"partial-work": { minutes: 45, energy: -8, productivity: 7, happiness: 0 },
+"ignore-work": { minutes: 0, energy: 15, productivity: -15, happiness: 5 }
+
+};
+
+
+/*
