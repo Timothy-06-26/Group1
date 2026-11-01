@@ -75,4 +75,27 @@ function loadGame() {
         } else {
             return number;
         }
+
+        //Turns minutes after midnight into text like "7:30 AM" or "12:00 PM"
+        function formatTime(totalminutes) {
+            var minutes = totalminutes % 1440;
+            var hours = Math.floor(minutes / 60);
+            var mins = minutes % 60;
+
+            var suffix = "AM";
+            if (hours >= 12) {
+                suffix = "PM";
+            }
+
+            hours = hours % 12;
+            if (hours === 0) {
+                hours = 12;
+            }
+
+            if (mins < 10) {
+                mins = "0" + mins;
+            }
+
+            return hours + ":" + mins + " " + suffix;
+        }
         
