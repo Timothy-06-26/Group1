@@ -275,4 +275,34 @@ function loadGame() {
         }
     }
 
+    //Fills in the final scene.
+    function updateSummary() {
+        var ending = getEnding();
+
+        document.getElementById("final-energy").textContent = game.energy;
+        document.getElementById("final-productivity").textContent = game.productivity;
+        document.getElementById("final-happiness").textContent = game.happiness;
+
+        document.getElementById("ending-title").textContent = ending;
+        document.getElementById("ending-description").textContent = endingTexts[ending];
+
+//Highlighting the matching card, to lower case and triming it 
+// to make sure the capital letters or spaces don't break the matching
+        var cards = document.querySelectorAll(".ending-card");
+
+        cards.forEach(function (card) {
+            var cardName = card.querySelector("h4").textContent.trim().toLowerCase();
+
+            if (cardName === ending.toLowerCase()) {
+                card.classList.add("earned");
+            } else {
+                card.classList.remove("earned");
+            }
+        });
+
+    }
+
+
+    /* EVENT LISTENERS */
+
     
