@@ -320,3 +320,36 @@ document.querySelectorAll(".choice-btn").forEach(function (button) {
         updateScreen();
     });
 });
+
+//Clicking a Next button moves to the next scene
+document.querySelectorAll(".next-btn").forEach(function (button) {
+    button.addEventListener("click", function () {
+        // After Scene 2, check if the player arrived on time 
+        if (game.scene === "transport") {
+            checkArrival();
+        }
+
+        // Move to the next scene and jump the clock.
+        game.scene = button.dataset.next;
+        if (sceneStartTimes[game.scene] !== undefined) {
+            game.minutes = sceneStartTimes[game.scene];
+        }
+
+        saveGame();
+        updateScreen();
+        window.scrollTo(0, 0);
+    });
+    });
+
+    //Clicking the Play Again button resets the game
+
+    document.getElementById("replay-btn").addEventListener("click", function () {
+        localStorage.removeItem(SAVE_KEY);
+        location.reload();
+    });
+
+    /* START A GAME */
+
+    // If there is a saved game, load it. 
+    loadGame();
+    updateScreen();
