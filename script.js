@@ -32,4 +32,18 @@ var effects = {
 };
 
 
-/*
+/* SAVING AND LOADING (Local Storage) */
+
+//localStorage stores in text, so JSON.stringify() converts the object to text, and JSON.parse() converts it back to an object
+
+function saveGame() {
+    localStorage.setItem(SAVE_KEY, JSON.stringify(game));
+}
+
+function loadGame() {
+    var savedText = localStorage.getItem(SAVE_KEY);
+
+    /* For the first time, there is no saved game, we keep new game save */
+    if (savedText === null) {
+        return;
+    }
