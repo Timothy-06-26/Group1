@@ -47,3 +47,32 @@ function loadGame() {
     if (savedText === null) {
         return;
     }
+
+    /* try & catch is used to handle errors, in case the saved text is corrupted or not in the expected format */
+    try {
+        var savedGame = JSON.parse(savedText);
+
+        /* Only used if the save points to a real scene */
+        if (document.getElementById(savedGame.currentScene) === null) {
+            return false;
+        }
+        game = savedGame;
+        return true;
+    } catch (error) {
+        return false;
+    }
+
+
+    /* Game Logic */
+
+    // Keeps a stat between 0 and 100 
+
+    function limit(number) {
+        if (number < 0) {
+            return 0;
+        } else if (number > 100) {
+            return 100;
+        } else {
+            return number;
+        }
+        
