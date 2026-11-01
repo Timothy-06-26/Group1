@@ -62,6 +62,8 @@ function loadGame() {
         return false;
     }
 
+}
+
 
     /* Game Logic */
 
@@ -98,6 +100,8 @@ function loadGame() {
 
             return hours + ":" + mins + " " + suffix;
         }
+
+    }
 
         //Apply the effects of an action to the game state
         function applyChoice(decisionNumber, choice) {
@@ -305,4 +309,14 @@ function loadGame() {
 
     /* EVENT LISTENERS */
 
-    
+    // Clicking a choice button
+
+document.querySelectorAll(".choice-btn").forEach(function (button) {
+    button.addEventListener("click", function () {
+        var decisionNumber = button.closest(".decision").dataset.decision;
+        
+        applyChoice(decisionNumber, button.dataset.choice);
+        saveGame();
+        updateScreen();
+    });
+});
