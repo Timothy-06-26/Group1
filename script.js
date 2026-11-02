@@ -54,7 +54,7 @@ function newGame() {
         energy: 70,
         productivity: 50,
         happiness: 60,
-        choices: {}
+        choices: {},
         //stats at the start of current scene
         sceneStart: { minutes: 8 * 60 + 30, energy: 70, productivity: 50, happiness: 60 }
     };
