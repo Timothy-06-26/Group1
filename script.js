@@ -175,7 +175,7 @@ function loadGame() {
         function getEnding() {
             if (game.productivity >= 75 && game.energy >= 15) {
                 return "Productive Day";
-            } else if (game.productivity < 50 && game.happiness < 50) {
+            } else if (game.productivity <= 50 && game.happiness <= 50) {
                 return "Balanced Day";
             } else  if (game.happiness >= 60 && game.productivity < 50) {
                 return "Chaotic Day";
