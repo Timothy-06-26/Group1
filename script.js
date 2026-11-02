@@ -55,6 +55,8 @@ function newGame() {
         productivity: 50,
         happiness: 60,
         choices: {}
+        //stats at the start of current scene
+        sceneStart: { minutes: 8 * 60 + 30, energy: 70, productivity: 50, happiness: 60 }
     };
 }
 
@@ -80,7 +82,7 @@ function loadGame() {
         var savedGame = JSON.parse(savedText);
 
         /* Only used if the save points to a real scene */
-        if (document.getElementById(savedGame.scene) === null) {
+        if (document.getElementById(savedGame.scene) === null || savedGame.sceneStart === undefined) {
             return false;
         }
         game = savedGame;
@@ -247,10 +249,10 @@ function loadGame() {
                 if (chosen === undefined) {
                     // Not answered yet
                     button.classList.remove("selected");
-                    button.disabled = false;
+                
                 } else {
                     //Answered: lock the buttons and highligh the one that was picked
-                    button.disabled = true;
+                    
                     if (button.dataset.choice === chosen) {
                         button.classList.add("selected");
                     } else {
@@ -343,9 +345,28 @@ document.querySelectorAll(".choice-btn").forEach(function (button) {
     button.addEventListener("click", function () {
         var decisionNumber = button.closest(".decision").dataset.decision;
         
-        applyChoice(decisionNumber, button.dataset.choice);
+        //Remember new choice(this will replace an earlier choice of a decision)
+        game.choices[decisionNumber] =  button.dataset.choice;
+
+        game.energy = game.sceneStart.energy;
+        game.productivity = game.sceneStart.productivity;
+        game.happiness = game.sceneStart.happiness;
+        game.minutes = game.sceneStart.minutes;
+
+        // then apply every choice made so far in this scene
+        var decisions = button.closest(".scene").querySelectorAll(".decision");
+
+        decisions.forEach(function (decision) {
+            var number = decision.dataset.decision;
+
+            if (game.choices[number] !== undefined) {
+                applyChoice(number, game.choices[number]);
+
+            }
+        });
         saveGame();
         updateScreen();
+
     });
 });
 
@@ -362,6 +383,14 @@ document.querySelectorAll(".next-btn").forEach(function (button) {
         if (sceneStartTimes[game.scene] !== undefined) {
             game.minutes = sceneStartTimes[game.scene];
         }
+
+        // Remember the stats at the start of the new scene
+        game.sceneStart = {
+            minutes: game.minutes,
+            energy: game.energy,
+            productivity: game.productivity, 
+            happiness: game.happiness
+        };
 
         saveGame();
         updateScreen();
